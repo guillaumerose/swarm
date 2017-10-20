@@ -11,7 +11,7 @@ import (
 	"sync"
 	"time"
 
-	log "github.com/Sirupsen/logrus"
+	log "github.com/sirupsen/logrus"
 	"github.com/docker/docker/api/types"
 	containertypes "github.com/docker/docker/api/types/container"
 	networktypes "github.com/docker/docker/api/types/network"
@@ -158,7 +158,7 @@ func (c *Cluster) CreateContainer(config *cluster.ContainerConfig, name string, 
 		bImageNotFoundError113, _ := regexp.MatchString(`repository \S* not found`, err.Error())
 		bRepositoryNotFoundError1706, _ := regexp.MatchString(`repository does not exist`, err.Error())
 
-		if (bImageNotFoundError || bImageNotFoundError113 || bRepositoryNotFoundError1706 || client.IsErrImageNotFound(err)) && !config.HaveNodeConstraint() {
+		if (bImageNotFoundError || bImageNotFoundError113 || bRepositoryNotFoundError1706 || client.IsErrNotFound(err)) && !config.HaveNodeConstraint() {
 			// Check if the image exists in the cluster
 			// If exists, retry with an image affinity
 			if c.Image(config.Image) != nil {

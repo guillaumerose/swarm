@@ -7,7 +7,7 @@ import (
 	"strings"
 	"time"
 
-	log "github.com/Sirupsen/logrus"
+	log "github.com/sirupsen/logrus"
 	"github.com/docker/docker/pkg/stringid"
 	"github.com/docker/swarm/cluster"
 	"github.com/gogo/protobuf/proto"
